@@ -8,21 +8,29 @@ public class Usuario {
 //● removerLivro(Livro livro): Remove um livro da lista de livros emprestados.
     private String nome;
     private int id;
-    private ArrayList <String> livrosEmprestados;
+    private ArrayList <String> livrosEmprestados = new ArrayList<>();
 
-    public Usuario(String nome, int id, ArrayList<String> livrosEmprestados) {
+    public Usuario(String nome, int id) {
         this.nome = nome;
         this.id = id;
-        this.livrosEmprestados = livrosEmprestados;
+   //     this.livrosEmprestados = livrosEmprestados;
     }
 
-    public void exibirDetalhes(String nome, int id, ArrayList<String> livrosEmprestados){
-        this.nome = nome;
-        this.id = id;
-        this.livrosEmprestados = livrosEmprestados;
+    public void exibirDetalhes(){
+        System.out.println("Usuário nome: " + this.nome + ", ID: " + this.id + ", Livros Emprestados: " + this.livrosEmprestados);
     }
 
+    public void adicionarLivro(Livro livro){
+        livro.emprestar();
+        String titulo = livro.getTitulo();
+        livrosEmprestados.add(titulo);
+    }
 
+    public void removerLivro(Livro livro){
+        livro.devolver();
+        String titulo = livro.getTitulo();
+        livrosEmprestados.remove(titulo);
+    }
 
     public String getNome() {
         return nome;
@@ -44,7 +52,7 @@ public class Usuario {
         return livrosEmprestados;
     }
 
-    public void setLivrosEmprestados(ArrayList<String> livrosEmprestados) {
-        this.livrosEmprestados = livrosEmprestados;
+    public void setLivrosEmprestados(Livro livro) {
+        this.livrosEmprestados = new ArrayList<>();
     }
 }
