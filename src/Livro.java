@@ -24,7 +24,6 @@ public class Livro {
         this.disponivel = true;
     }
 
-
     public String getTitulo() {
         return titulo;
     }

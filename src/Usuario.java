@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 
 public class Usuario {
-//Métodos:
-//● exibirDetalhes(): Exibe as informações do usuário.
-//
-//● adicionarLivro(Livro livro): Adiciona um livro à lista de livros emprestados.
-//● removerLivro(Livro livro): Remove um livro da lista de livros emprestados.
     private String nome;
     private int id;
     private ArrayList <String> livrosEmprestados = new ArrayList<>();
@@ -52,7 +47,7 @@ public class Usuario {
         return livrosEmprestados;
     }
 
-    public void setLivrosEmprestados(Livro livro) {
+    public void setLivrosEmprestados() {
         this.livrosEmprestados = new ArrayList<>();
     }
 }
