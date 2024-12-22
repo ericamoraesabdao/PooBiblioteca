@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Biblioteca {
     //Atributos:
@@ -21,7 +21,49 @@ public class Biblioteca {
         this.livros = livros;
     }
 
-    public void cadastrarLivro (Livro livro){
+    public void cadastrarLivro (){
+        Scanner scanner = new Scanner(System.in);
+        this.livros = new ArrayList<Livro>();
+
+            System.out.println("\nDigite o título do livro: ");
+            String titulo1 = scanner.nextLine();
+
+            System.out.println("\nDigite o autor do livro: ");
+            String autor1 = scanner.nextLine();
+
+            System.out.println("\nDigite o ISBN do livro: ");
+            String isbn1 = (scanner.nextLine());
+
+            Boolean disponivel1 = true;
+
+
+            Livro livro = new Livro(titulo1, autor1, isbn1, disponivel1);
+            livro.exibirDetalhes();
+
+            livros.add(new Livro(livro.getTitulo(), livro.getAutor(), livro.getIsbn(), livro.getDisponivel()));
+            livros.add(livro);
+
+            exibirLivrosDisponiveis();
+    }
+
+    public void cadastrarUsuario(Usuario usuario){
+        usuarios.add(usuario);
+    }
+
+    public void realizarEmprestimo(String isbn, int idUsuario){
+
+    }
+
+    public void realizarDevolucao(String isbn, int idUsuario){
+
+    }
+
+    public void exibirLivrosDisponiveis(){
+        for(Livro j : getLivros()){
+            for (Livro s: livros)
+                System.out.println(s);
+        }
+
 
     }
 

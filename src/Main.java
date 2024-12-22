@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
+
 public class Main {
     public static void main(String[] args) {
 
@@ -37,5 +40,14 @@ public class Main {
         joao.exibirDetalhes();
         ubirajara.exibirDetalhes();
         moreninha.exibirDetalhes();
+
+        System.out.println("Testando o método cadastrar livro da classe Biblioteca");
+        Biblioteca biblioteca = new Biblioteca(new ArrayList<>(), new ArrayList<>());
+
+        biblioteca.cadastrarLivro();
+        biblioteca.cadastrarUsuario(joao);
+
+        System.out.println(biblioteca.getLivros());
+        System.out.println(biblioteca.getUsuarios());
     }
 }
