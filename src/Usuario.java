@@ -19,13 +19,21 @@ public class Usuario {
     }
 
     public void adicionarLivro(Livro livro){
-        livro.emprestar();
-        livrosEmprestados.add(livro);
+        if (livrosEmprestados.size() <= 2){
+            livro.emprestar();
+            livrosEmprestados.add(livro);
+            System.out.println("Empréstimo realizado com sucesso!");
+        }
+        else {
+            System.out.println("Você já tem 3 livros emprestados, não pode pegar mais.");
+        }
+
     }
 
     public void removerLivro(Livro livro){
         livro.devolver();
         livrosEmprestados.remove(livro);
+        System.out.println("Livro devolvido com sucesso!");
     }
 
     public String getNome() {

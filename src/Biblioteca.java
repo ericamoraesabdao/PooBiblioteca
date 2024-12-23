@@ -44,7 +44,14 @@ public class Biblioteca {
             if (usuario.getId() == idUsuario){
                 for (Livro livro: livros){
                     if (Objects.equals(livro.getIsbn(), isbn)){
-                        usuario.adicionarLivro(livro);
+                        if (livro.getDisponivel() == true){
+                            usuario.adicionarLivro(livro);
+
+                        }
+                        else {
+                            System.out.println("Você não pode pegar este livro, ele já está emprestado.");
+                        }
+
                     }
                 }
             }
@@ -64,9 +71,11 @@ public class Biblioteca {
     }
 
     public void exibirLivrosDisponiveis(){
-        for (Livro livro: livros){
-            System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() + ", ISBN: " + livro.getIsbn() + ", Disponível: " + livro.getDisponivel());
+        for (Livro livro: livros) {
+            if (livro.getDisponivel() == true) {
+                System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() + ", ISBN: " + livro.getIsbn() + ", Disponível: " + livro.getDisponivel());
             }
+        }
     }
     public void exibirListaUsuarios(){
         for (Usuario usuario: usuarios){

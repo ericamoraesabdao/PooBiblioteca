@@ -7,6 +7,8 @@ public class Main {
 
         Livro moreninha = new Livro("A moreninha", "Joaquim Manuel Macedo", "123432098432", true);
         Livro ubirajara = new Livro("Ubirajara", "José de Alencar", "123432098434", true);
+        Livro casmurro = new Livro("Dom Casmurro", "Machado de Assis", "123432098436", true);
+        Livro helena = new Livro("Helena", "Machado de Assis", "123432098439", true);
 
         Usuario joao = new Usuario("João Silva");
         Usuario maria = new Usuario("Maria de Jesus");
@@ -15,6 +17,8 @@ public class Main {
 
        biblioteca.setLivros(moreninha);
        biblioteca.setLivros(ubirajara);
+       biblioteca.setLivros(casmurro);
+       biblioteca.setLivros(helena);
 
         biblioteca.setUsuarios(joao);
         biblioteca.setUsuarios(maria);
@@ -22,19 +26,23 @@ public class Main {
         biblioteca.exibirListaUsuarios();
         biblioteca.exibirLivrosDisponiveis();
 
-        biblioteca.cadastrarUsuario();
-        biblioteca.exibirListaUsuarios();
 
-        biblioteca.cadastrarLivro();
-        biblioteca.exibirLivrosDisponiveis();
+        biblioteca.realizarEmprestimo("123432098432", 1);
+        biblioteca.realizarEmprestimo("123432098434", 1);
+        biblioteca.realizarEmprestimo("123432098436", 1);
+        biblioteca.realizarEmprestimo("123432098439", 1);
 
-        biblioteca.realizarEmprestimo("123432098434", 2);
-        biblioteca.exibirListaUsuarios();
-        biblioteca.exibirLivrosDisponiveis();
 
-        biblioteca.realizarDevolucao("123432098434", 2);
         biblioteca.exibirListaUsuarios();
         biblioteca.exibirLivrosDisponiveis();
+
+        biblioteca.realizarDevolucao("123432098432", 1);
+        biblioteca.realizarDevolucao("123432098436", 1);
+
+        biblioteca.exibirListaUsuarios();
+        biblioteca.exibirLivrosDisponiveis();
+
+
     }
 }
 
