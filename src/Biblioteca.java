@@ -19,13 +19,14 @@ public class Biblioteca {
         String autor1 = scanner.nextLine();
 
         System.out.println("\nDigite o ISBN do livro: ");
-        String isbn1 = (scanner.nextLine());
+        String isbn1 = scanner.nextLine();
 
         boolean disponivel1 = true;
 
         Livro livro = new Livro(titulo1, autor1, isbn1, disponivel1);
 
         this.livros.add(livro);
+        System.out.println("Livro cadastrado com sucesso");
     }
 
     public void cadastrarUsuario(){
@@ -37,6 +38,7 @@ public class Biblioteca {
         Usuario usuario1 = new Usuario(nome1);
 
         this.usuarios.add(usuario1);
+        System.out.println("Usuário cadastrado com sucesso!");
     }
 
     public void realizarEmprestimo(String isbn, int idUsuario){
@@ -46,7 +48,6 @@ public class Biblioteca {
                     if (Objects.equals(livro.getIsbn(), isbn)){
                         if (livro.getDisponivel() == true){
                             usuario.adicionarLivro(livro);
-
                         }
                         else {
                             System.out.println("Você não pode pegar este livro, ele já está emprestado.");
@@ -71,6 +72,7 @@ public class Biblioteca {
     }
 
     public void exibirLivrosDisponiveis(){
+        System.out.println("Lista dos Livros Disponíveis: ");
         for (Livro livro: livros) {
             if (livro.getDisponivel() == true) {
                 System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() + ", ISBN: " + livro.getIsbn() + ", Disponível: " + livro.getDisponivel());

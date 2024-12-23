@@ -1,48 +1,83 @@
 import java.util.ArrayList;
-
+import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
+        Escolha esc = new Escolha();
 
-        Livro moreninha = new Livro("A moreninha", "Joaquim Manuel Macedo", "123432098432", true);
-        Livro ubirajara = new Livro("Ubirajara", "José de Alencar", "123432098434", true);
-        Livro casmurro = new Livro("Dom Casmurro", "Machado de Assis", "123432098436", true);
-        Livro helena = new Livro("Helena", "Machado de Assis", "123432098439", true);
 
-        Usuario joao = new Usuario("João Silva");
-        Usuario maria = new Usuario("Maria de Jesus");
+        boolean val = false;
 
+        while (val == false) { // Enquanto "val"for "false" o while vai ficar fazendo loop, mas quando se tornar "true" ele vai parar
+            int opc = esc.menu();
+            val = esc.escolher(opc);
+        }
+    }
+
+    static class Escolha {
         Biblioteca biblioteca = new Biblioteca(new ArrayList<>(), new ArrayList<>());
 
-       biblioteca.setLivros(moreninha);
-       biblioteca.setLivros(ubirajara);
-       biblioteca.setLivros(casmurro);
-       biblioteca.setLivros(helena);
+        public boolean escolher(int menu) {
 
-        biblioteca.setUsuarios(joao);
-        biblioteca.setUsuarios(maria);
+            switch (menu) {
+                case 1:
+                    biblioteca.cadastrarLivro();
+                    return false;
+                case 2:
+                    biblioteca.cadastrarUsuario();
+                    return false;
+                case 3:
+                    Scanner scanner2 = new Scanner(System.in);
+                    System.out.println("Digite o ISBN do livro desejado: ");
+                    String isbn = scanner2.nextLine();
 
-        biblioteca.exibirListaUsuarios();
-        biblioteca.exibirLivrosDisponiveis();
+                    Scanner scanner3 = new Scanner(System.in);
+                    System.out.println("Digite o ID do Usuário desejado: ");
+                    int idUsuario = Integer.parseInt(scanner3.nextLine());
+
+                    biblioteca.realizarEmprestimo(isbn, idUsuario);
+                    return false;
+                case 4:
+                    Scanner scanner4 = new Scanner(System.in);
+                    System.out.println("Digite o ISBN do livro desejado: ");
+                    String isbn2 = scanner4.nextLine();
+
+                    Scanner scanner5 = new Scanner(System.in);
+                    System.out.println("Digite o ID do usuário desejado: ");
+                    int idUsuario2 = Integer.parseInt(scanner5.nextLine());
+
+                    biblioteca.realizarDevolucao(isbn2, idUsuario2);
+                    return false;
+                case 5:
+                    biblioteca.exibirLivrosDisponiveis();
+                    return false;
+                case 6:
+                    return true;
+                default:
+                    System.out.println("Por favor digite uma opção válida.");
+                    return false;
+            }
+        }
 
 
-        biblioteca.realizarEmprestimo("123432098432", 1);
-        biblioteca.realizarEmprestimo("123432098434", 1);
-        biblioteca.realizarEmprestimo("123432098436", 1);
-        biblioteca.realizarEmprestimo("123432098439", 1);
+        public int menu() {
+            int menu;
 
+            Scanner scanner = new Scanner(System.in);
 
-        biblioteca.exibirListaUsuarios();
-        biblioteca.exibirLivrosDisponiveis();
+            System.out.println("Bem-vindo ao Sistema de Gerenciamento de Biblioteca!" +
+                    "\nEscolha uma opção:" +
+                    "\n1. Cadastrar livro" +
+                    "\n2. Cadastrar usuário" +
+                    "\n3. Realizar empréstimo" +
+                    "\n4. Realizar devolução" +
+                    "\n5. Exibir livros disponíveis" +
+                    " \n6. Sair");
+            menu = Integer.parseInt(scanner.nextLine());
 
-        biblioteca.realizarDevolucao("123432098432", 1);
-        biblioteca.realizarDevolucao("123432098436", 1);
-
-        biblioteca.exibirListaUsuarios();
-        biblioteca.exibirLivrosDisponiveis();
-
-
+            return menu;
+        }
     }
 }
 
