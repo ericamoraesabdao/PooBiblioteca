@@ -3,28 +3,29 @@ import java.util.ArrayList;
 public class Usuario {
     private String nome;
     private int id;
-    private ArrayList <String> livrosEmprestados = new ArrayList<>();
+    private ArrayList <Livro> livrosEmprestados = new ArrayList<>();
+    private static int sequencia = 1;
 
-    public Usuario(String nome, int id) {
+    public Usuario(String nome) {
         this.nome = nome;
-        this.id = id;
-   //     this.livrosEmprestados = livrosEmprestados;
+        this.id = sequencia ++;
     }
 
     public void exibirDetalhes(){
-        System.out.println("Usuário nome: " + this.nome + ", ID: " + this.id + ", Livros Emprestados: " + this.livrosEmprestados);
+        System.out.println("Usuário nome: " + this.nome + ", ID: " + this.id + ", Livros Emprestados: ");
+        for (Livro livro: livrosEmprestados){
+            livro.exibirDetalhes();
+        }
     }
 
     public void adicionarLivro(Livro livro){
         livro.emprestar();
-        String titulo = livro.getTitulo();
-        livrosEmprestados.add(titulo);
+        livrosEmprestados.add(livro);
     }
 
     public void removerLivro(Livro livro){
         livro.devolver();
-        String titulo = livro.getTitulo();
-        livrosEmprestados.remove(titulo);
+        livrosEmprestados.remove(livro);
     }
 
     public String getNome() {
@@ -39,11 +40,11 @@ public class Usuario {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId() {
+        this.id = sequencia ++;
     }
 
-    public ArrayList<String> getLivrosEmprestados() {
+    public ArrayList<Livro> getLivrosEmprestados() {
         return livrosEmprestados;
     }
 

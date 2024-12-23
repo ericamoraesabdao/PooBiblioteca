@@ -1,18 +1,6 @@
 import java.util.*;
 
 public class Biblioteca {
-    //Atributos:
-    //● livros (ArrayList&lt;Livro&gt;): Lista de livros disponíveis na biblioteca.
-    //● usuarios (ArrayList&lt;Usuario&gt;): Lista de usuários cadastrados.
-    //Métodos:
-    //● cadastrarLivro(Livro livro): Adiciona um livro à lista de livros.
-    //● cadastrarUsuario(Usuario usuario): Adiciona um usuário à lista de usuários.
-    //● realizarEmprestimo(String isbn, int idUsuario): Realiza o empréstimo de um livro
-    //para um usuário.
-    //● realizarDevolucao(String isbn, int idUsuario): Realiza a devolução de um livro por um
-    //usuário.
-    //● exibirLivrosDisponiveis(): Exibe todos os livros disponíveis para empréstimo.
-
     private ArrayList <Livro> livros = new ArrayList<>();
     private ArrayList <Usuario> usuarios = new ArrayList<>();
 
@@ -23,63 +11,85 @@ public class Biblioteca {
 
     public void cadastrarLivro (){
         Scanner scanner = new Scanner(System.in);
-        this.livros = new ArrayList<Livro>();
 
-            System.out.println("\nDigite o título do livro: ");
-            String titulo1 = scanner.nextLine();
+        System.out.println("\nDigite o título do livro: ");
+        String titulo1 = scanner.nextLine();
 
-            System.out.println("\nDigite o autor do livro: ");
-            String autor1 = scanner.nextLine();
+        System.out.println("\nDigite o autor do livro: ");
+        String autor1 = scanner.nextLine();
 
-            System.out.println("\nDigite o ISBN do livro: ");
-            String isbn1 = (scanner.nextLine());
+        System.out.println("\nDigite o ISBN do livro: ");
+        String isbn1 = (scanner.nextLine());
 
-            Boolean disponivel1 = true;
+        boolean disponivel1 = true;
 
+        Livro livro = new Livro(titulo1, autor1, isbn1, disponivel1);
 
-            Livro livro = new Livro(titulo1, autor1, isbn1, disponivel1);
-            livro.exibirDetalhes();
-
-            livros.add(new Livro(livro.getTitulo(), livro.getAutor(), livro.getIsbn(), livro.getDisponivel()));
-            livros.add(livro);
-
-            exibirLivrosDisponiveis();
+        this.livros.add(livro);
     }
 
-    public void cadastrarUsuario(Usuario usuario){
-        usuarios.add(usuario);
+    public void cadastrarUsuario(){
+        Scanner scanner2 = new Scanner(System.in);
+
+        System.out.println("\nDigite o nome: ");
+        String nome1 = scanner2.nextLine();
+
+        Usuario usuario1 = new Usuario(nome1);
+
+        this.usuarios.add(usuario1);
     }
 
     public void realizarEmprestimo(String isbn, int idUsuario){
-
+        for (Usuario usuario: usuarios) {
+            if (usuario.getId() == idUsuario){
+                for (Livro livro: livros){
+                    if (Objects.equals(livro.getIsbn(), isbn)){
+                        usuario.adicionarLivro(livro);
+                    }
+                }
+            }
+        }
     }
 
     public void realizarDevolucao(String isbn, int idUsuario){
-
+        for (Usuario usuario: usuarios) {
+            if (usuario.getId() == idUsuario){
+                for (Livro livro: livros){
+                    if (Objects.equals(livro.getIsbn(), isbn)){
+                        usuario.removerLivro(livro);
+                    }
+                }
+            }
+        }
     }
 
     public void exibirLivrosDisponiveis(){
-        for(Livro j : getLivros()){
-            for (Livro s: livros)
-                System.out.println(s);
+        for (Livro livro: livros){
+            System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() + ", ISBN: " + livro.getIsbn() + ", Disponível: " + livro.getDisponivel());
+            }
+    }
+    public void exibirListaUsuarios(){
+        for (Usuario usuario: usuarios){
+            System.out.println("Nome: " + usuario.getNome() + ", ID: " + usuario.getId() + ", Livros emprestados: ");
+            for (Livro livro: usuario.getLivrosEmprestados()){
+                livro.exibirDetalhes();
+            }
         }
-
-
     }
 
     public ArrayList<Livro> getLivros() {
         return livros;
     }
 
-    public void setLivros(ArrayList<Livro> livros) {
-        this.livros = livros;
+    public void setLivros(Livro livros) {
+        this.livros.add(livros);
     }
 
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(ArrayList<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setUsuarios(Usuario usuario) {
+        this.usuarios.add(usuario);
     }
 }

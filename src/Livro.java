@@ -13,7 +13,7 @@ public class Livro {
     }
 
     public void exibirDetalhes() {
-            System.out.println("Título: " + this.titulo + ", autor: " + this.autor + ", isbn: " + this.isbn + ", Disponível: " + this.disponivel);
+        System.out.println("Título: " + this.titulo + ", autor: " + this.autor + ", isbn: " + this.isbn + ", Disponível: " + this.disponivel);
     }
 
     public void emprestar(){
@@ -55,4 +55,5 @@ public class Livro {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+
 }

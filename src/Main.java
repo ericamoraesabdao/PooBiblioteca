@@ -1,53 +1,40 @@
 import java.util.ArrayList;
 
 
+
 public class Main {
     public static void main(String[] args) {
 
         Livro moreninha = new Livro("A moreninha", "Joaquim Manuel Macedo", "123432098432", true);
         Livro ubirajara = new Livro("Ubirajara", "José de Alencar", "123432098434", true);
 
-        System.out.println("Testando método exibirDetalhes da classe livro");
-        moreninha.exibirDetalhes();
-        ubirajara.exibirDetalhes();
+        Usuario joao = new Usuario("João Silva");
+        Usuario maria = new Usuario("Maria de Jesus");
 
-        System.out.println("Testando o método emprestar da classe Livro");
-        moreninha.emprestar();
-
-        moreninha.exibirDetalhes();
-
-        System.out.println("Testando o método devolver da classe Livro");
-        moreninha.devolver();
-        moreninha.exibirDetalhes();
-
-        Usuario joao = new Usuario("João Silva", 1);
-
-        System.out.println("Testando o método exibirDetalhes da classe Usuário");
-        joao.exibirDetalhes();
-
-        System.out.println("Testando o método adicionarLivro da classe Usuário");
-        joao.adicionarLivro(ubirajara);
-        joao.adicionarLivro(moreninha);
-
-
-        joao.exibirDetalhes();
-        ubirajara.exibirDetalhes();
-        moreninha.exibirDetalhes();
-
-        System.out.println("Testando o método removerLivro da classe Usuário");
-        joao.removerLivro(ubirajara);
-
-        joao.exibirDetalhes();
-        ubirajara.exibirDetalhes();
-        moreninha.exibirDetalhes();
-
-        System.out.println("Testando o método cadastrar livro da classe Biblioteca");
         Biblioteca biblioteca = new Biblioteca(new ArrayList<>(), new ArrayList<>());
 
-        biblioteca.cadastrarLivro();
-        biblioteca.cadastrarUsuario(joao);
+       biblioteca.setLivros(moreninha);
+       biblioteca.setLivros(ubirajara);
 
-        System.out.println(biblioteca.getLivros());
-        System.out.println(biblioteca.getUsuarios());
+        biblioteca.setUsuarios(joao);
+        biblioteca.setUsuarios(maria);
+
+        biblioteca.exibirListaUsuarios();
+        biblioteca.exibirLivrosDisponiveis();
+
+        biblioteca.cadastrarUsuario();
+        biblioteca.exibirListaUsuarios();
+
+        biblioteca.cadastrarLivro();
+        biblioteca.exibirLivrosDisponiveis();
+
+        biblioteca.realizarEmprestimo("123432098434", 2);
+        biblioteca.exibirListaUsuarios();
+        biblioteca.exibirLivrosDisponiveis();
+
+        biblioteca.realizarDevolucao("123432098434", 2);
+        biblioteca.exibirListaUsuarios();
+        biblioteca.exibirLivrosDisponiveis();
     }
 }
+
